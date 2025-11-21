@@ -213,7 +213,7 @@
   try { localStorage.setItem('__mm_test','1'); localStorage.removeItem('__mm_test'); }
   catch(e){ alert('Your browser blocks local storage — journal and settings will not persist.'); }
 
-})// ⭐⭐ ADDED: Motivation Generator ⭐⭐
+})();// ⭐⭐ ADDED: Motivation Generator ⭐⭐
 const quotes = [
     "You are stronger than you think!",
     "One small step every day makes big changes.",
@@ -227,5 +227,6 @@ function generateMotivation() {
     text.textContent = quotes[Math.floor(Math.random() * quotes.length)];
 }
 // ⭐⭐ END ADDED ⭐⭐
+
 
 
