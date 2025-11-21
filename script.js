@@ -108,7 +108,7 @@
 
   if(startTest) startTest.addEventListener('click', ()=> {
     qIndex = 0; score = 0; testResult.textContent = '';
-    if(testArea) testArea.classList.remove('completed');
+    if(testArea) testArea.classList.remove('hidden');
     if(qBox) qBox.textContent = testQ[qIndex];
   });
 
@@ -122,7 +122,7 @@
     } else { showResult(); }
   }
   function showResult(){
-    if(testArea) testArea.classList.add('hidden');
+    if(testArea) testArea.classList.add('completed');
     if(testResult){
       if(score <= 1) testResult.textContent = `Low stress (${score}/${testQ.length}). Keep healthy routines.`;
       else if(score <= 3) testResult.textContent = `Moderate stress (${score}/${testQ.length}). Try breaks & breathing.`;
@@ -227,6 +227,7 @@ function generateMotivation() {
     text.textContent = quotes[Math.floor(Math.random() * quotes.length)];
 }
 // ⭐⭐ END ADDED ⭐⭐
+
 
 
 
