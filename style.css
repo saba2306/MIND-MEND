@@ -1,0 +1,148 @@
+/* MindMend — Dark Aesthetic theme (thin font, animated gradient, floating icons) */
+
+:root{
+  --bg1:#0b1020;
+  --bg2:#1b1330;
+  --card:#0f1724;
+  --muted:#9aa2b2;
+  --accent:#7ee1d0;
+  --accent-2:#c08ff4;
+  --glass: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  font-weight:300;
+  color: #e6eef2;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  background: linear-gradient(120deg,var(--bg1), var(--bg2));
+  overflow-x:hidden;
+}
+
+/* animated soft gradient overlay */
+.bg{
+  position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background: linear-gradient(120deg,#0b1020 0%, #1a1330 40%, #0c1224 100%);
+}
+.bg::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(60deg, rgba(126,225,208,0.04), rgba(192,143,244,0.03));
+  background-size: 300% 300%;
+  animation: bgmove 18s ease infinite;
+  mix-blend-mode: screen;
+  z-index:-1;
+}
+@keyframes bgmove {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* floating icons */
+.icon{position:fixed;fill:rgba(230,238,242,0.95);width:72px;height:72px;opacity:.85}
+.icon-moon{left:6%;top:10%;transform-origin:center;animation:floaty 8s ease-in-out infinite, rotateg 24s linear infinite}
+.icon-heart{right:8%;top:18%;width:56px;height:56px;fill:rgba(192,143,244,0.9);animation:floaty 10s ease-in-out infinite 1s}
+
+@keyframes floaty{
+  0%{transform:translateY(0) translateX(0)}
+  50%{transform:translateY(-18px) translateX(6px)}
+  100%{transform:translateY(0) translateX(0)}
+}
+@keyframes rotateg{from{rotate:0deg} to{rotate:360deg}}
+
+/* soft glow particles */
+.glow-particles{position:fixed;left:45%;top:8%;width:240px;height:160px;pointer-events:none}
+.glow-particles .g{position:absolute;border-radius:50%;}
+.g1{width:18px;height:18px;left:10%;top:20%;background:rgba(126,225,208,0.18);filter:blur(6px); animation:glow 6s ease-in-out infinite}
+.g2{width:10px;height:10px;left:40%;top:10%;background:rgba(192,143,244,0.16);filter:blur(5px); animation:glow 8s ease-in-out infinite 1s}
+.g3{width:14px;height:14px;left:70%;top:40%;background:rgba(126,225,208,0.12);filter:blur(6px); animation:glow 7s ease-in-out infinite 0.5s}
+.g4{width:8px;height:8px;left:80%;top:10%;background:rgba(230,238,242,0.08);filter:blur(4px); animation:glow 9s ease-in-out infinite 1.2s}
+.g5{width:12px;height:12px;left:25%;top:60%;background:rgba(192,143,244,0.10);filter:blur(5px); animation:glow 10s ease-in-out infinite 0.8s}
+@keyframes glow{0%{transform:scale(.85);opacity:.6}50%{transform:scale(1.25);opacity:1}100%{transform:scale(.85);opacity:.6}}
+
+/* site layout */
+.container{max-width:1100px;margin:0 auto;padding:1rem}
+.header{position:sticky;top:0;z-index:10;background:transparent;padding:.6rem 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-weight:600;font-size:1.1rem;letter-spacing:.6px;color:var(--accent)}
+.nav{display:flex;gap:.5rem}
+.nav-btn{background:transparent;border:none;color:var(--muted);padding:.45rem .6rem;border-radius:8px;font-weight:400;cursor:pointer}
+.nav-btn:hover{color:var(--accent);background:var(--glass)}
+
+/* HERO (center layout) */
+.main{padding:3.2rem 1rem 6rem}
+.hero{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1rem}
+.title{font-size:3rem;margin:0;font-weight:300;letter-spacing:.6px}
+.subtitle{color:var(--muted);margin-top:.6rem;max-width:720px}
+.hero-actions{margin-top:1.4rem;display:flex;gap:.8rem;align-items:center;justify-content:center}
+.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;padding:.7rem 1.1rem;border-radius:12px;color:#061018;font-weight:600;cursor:pointer}
+.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:.6rem 1rem;border-radius:10px;color:var(--muted)}
+.hero-note{margin-top:1rem;color:var(--muted)}
+
+/* cards & grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.2rem}
+.card{background:var(--card);padding:1rem;border-radius:14px;box-shadow:0 8px 30px rgba(3,6,12,0.5);border:1px solid rgba(255,255,255,0.02)}
+.card.wide{grid-column:span 1}
+
+/* small helpers */
+.row{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.9rem}
+.small{padding:.45rem .7rem;border-radius:10px;font-size:.92rem}
+.muted{color:var(--muted);font-size:.95rem}
+
+/* mood buttons */
+.moods{display:flex;gap:.6rem;justify-content:center;margin-top:.6rem}
+.mood{background:transparent;border:none;font-size:1.5rem;cursor:pointer;padding:.4rem .55rem;border-radius:10px}
+.mood:focus{outline:2px solid rgba(126,225,208,0.18)}
+
+/* breathing circle */
+.breath-wrap{display:flex;justify-content:center;padding:1rem}
+.breath-circle{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(126,225,208,0.12), rgba(192,143,244,0.06));transition:transform 4s ease-in-out;box-shadow: 0 8px 30px rgba(0,0,0,0.6)}
+
+/* chat */
+.chatbox{display:flex;flex-direction:column;gap:.6rem}
+.chat-log{min-height:120px;max-height:220px;overflow:auto;padding:.6rem;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
+.chat-controls{display:flex;gap:.5rem}
+.chat-controls input{flex:1;padding:.5rem;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+
+/* journal */
+textarea#entryText{width:100%;min-height:120px;padding:.8rem;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-top:.6rem;resize:vertical}
+.entries{margin-top:1rem;display:flex;flex-direction:column;gap:.6rem}
+.entry{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+
+/* test area */
+.hidden{display:none}
+.qbox{padding:.6rem;border-radius:8px;background:rgba(255,255,255,0.02);margin-top:.6rem}
+/* ⭐⭐ ADDED: Motivation Box Style ⭐⭐ */
+.motivation-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.motivation-box button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+/* ⭐⭐ END ADDED ⭐⭐ */
+
+/* footer */
+.footer{padding:2rem 0 4rem;text-align:center;color:var(--muted);margin-top:2rem}
+
+/* responsive tweaks */
+@media(min-width:920px){
+  .title{font-size:3.6rem}
+  .card.wide{grid-column:span 2}
+}

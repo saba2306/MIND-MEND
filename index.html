@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MindMend — Calm for the Night</title>
+
+  <!-- Thin aesthetic font -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated background + floating icons -->
+  <div class="bg">
+    <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+
+    <svg class="icon icon-heart" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 21s-7-4.35-9-7.05C-1 9.5 4 4 7.5 6.5 9.25 7.8 12 10.5 12 10.5s2.75-2.7 4.5-4 8.5 3.5 4.5 7.45C19 16.65 12 21 12 21z"/>
+    </svg>
+
+    <div class="glow-particles" aria-hidden="true">
+      <span class="g g1"></span>
+      <span class="g g2"></span>
+      <span class="g g3"></span>
+      <span class="g g4"></span>
+      <span class="g g5"></span>
+    </div>
+  </div>
+
+  <!-- Header / nav (minimal) -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">MindMend</div>
+      <nav class="nav">
+        <button class="nav-btn" data-target="home">Home</button>
+        <button class="nav-btn" data-target="features">Features</button>
+        <button class="nav-btn" data-target="journal">Journal</button>
+        <button class="nav-btn" data-target="help">Help</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main">
+    <!-- HERO - centered layout (chosen) -->
+    <section id="home" class="panel hero">
+      <h1 class="title">MindMend</h1>
+      <p class="subtitle">Quiet the mind. Track your feelings. Breathe a little easier.</p>
+
+      <div class="hero-actions">
+        <button class="primary" data-target="features">Try Quick Tools</button>
+        <button class="ghost" data-target="journal">Open Journal</button>
+      </div>
+
+      <div class="hero-note muted">All data stays in your browser — private & offline.</div>
+    </section>
+
+    <!-- FEATURES (below hero) -->
+    <section id="features" class="panel hidden">
+      <div class="grid">
+        <article class="card">
+          <h3>Mood Tracker</h3>
+          <div class="moods" role="group" aria-label="Mood options">
+            <button class="mood" data-mood="Happy">😊</button>
+            <button class="mood" data-mood="Sad">😔</button>
+            <button class="mood" data-mood="Neutral">😐</button>
+            <button class="mood" data-mood="Angry">😠</button>
+            <button class="mood" data-mood="Anxious">😰</button>
+          </div>
+          <p id="moodMsg" class="muted"></p>
+          <div class="row">
+            <button id="saveMood" class="small">Save Mood</button>
+            <button id="getQuote" class="small ghost">Inspire Me</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Breathing Guide</h3>
+          <div class="breath-wrap">
+            <div id="breathCircle" class="breath-circle" aria-hidden="true"></div>
+          </div>
+          <div class="row">
+            <button id="startBreath" class="small">Start</button>
+            <button id="stopBreath" class="small ghost">Stop</button>
+          </div>
+          <p class="muted">Follow the circle: inhale — hold — exhale.</p>
+        </article>
+
+        <article class="card">
+          <h3>Quick Stress Test</h3>
+          <p class="muted">5 short yes/no questions — get a simple score.</p>
+          <button id="startTest" class="small">Start Test</button>
+          <div id="testArea" class="hidden">
+            <div id="qBox" class="qbox"></div>
+            <div class="row">
+              <button id="ansYes" class="small">Yes</button>
+              <button id="ansNo" class="small ghost">No</button>
+            </div>
+            <p id="testResult" class="muted"></p>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <h3>Comfort Chat (Bot)</h3>
+          <div class="chatbox">
+            <div id="chatLog" class="chat-log" aria-live="polite"></div>
+            <div class="chat-controls">
+              <input id="chatInput" placeholder="I'm feeling..." />
+              <button id="sendChat" class="small">Send</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section id="journal" class="panel hidden">
+      <h2>Your Private Journal</h2>
+      <p class="muted">Stored only on your device. You can clear anytime.</p>
+      <textarea id="entryText" placeholder="Write about your day..."></textarea>
+      <div class="row">
+        <button id="saveEntry" class="small">Save Entry</button>
+        <button id="clearEntries" class="small ghost">Clear All</button>
+      </div>
+      <div id="entriesList" class="entries"></div>
+    </section>
+
+    <!-- HELP -->
+    <section id="help" class="panel hidden">
+      <h2>Help & Helplines</h2>
+      <div class="card">
+        <p>If you or someone is in immediate danger, contact emergency services first.</p>
+        <ul class="muted">
+          <li>National helpline: <strong>123-456-7890</strong></li>
+          <li>Email: <strong>help@mindmend.local</strong></li>
+        </ul>
+        <p class="muted">This app is not a replacement for professional care.</p>
+      </div>
+    </section>
+
+    <!-- ⭐⭐ ADDED: Daily Motivation Generator ⭐⭐ -->
+<div class="motivation-box">
+    <h2>Daily Motivation</h2>
+    <p id="motivationText">Click the button to get motivation</p>
+    <button onclick="generateMotivation()">Get Motivation</button>
+</div>
+<!-- ⭐⭐ END ADDED ⭐⭐ -->
+</main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <small class="muted">Made with care • MindMend © <span id="year"></span></small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
