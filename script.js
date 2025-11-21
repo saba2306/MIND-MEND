@@ -108,7 +108,7 @@
 
   if(startTest) startTest.addEventListener('click', ()=> {
     qIndex = 0; score = 0; testResult.textContent = '';
-    if(testArea) testArea.classList.remove('hidden');
+    if(testArea) testArea.classList.remove('completed');
     if(qBox) qBox.textContent = testQ[qIndex];
   });
 
@@ -227,4 +227,5 @@ function generateMotivation() {
     text.textContent = quotes[Math.floor(Math.random() * quotes.length)];
 }
 // ⭐⭐ END ADDED ⭐⭐
+
 
